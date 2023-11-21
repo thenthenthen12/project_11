@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="css/reset.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <script src="lib/jquery-3.7.0.min.js"></script>
+        <script>
+            $(function () {
+                window.addEventListener(
+                    'wheel',
+                    function (e) {
+                        e.preventDefault();
+                    },
+                    { passive: false }
+                );
+
+                var page = 1;
+
+                var $html = $('html');
+
+                var lastPage = $('section').length;
+
+                $html.animate({ scrollTop: 0 }, 10);
+
+                $(window).on('wheel', function (e) {
+                    if ($html.is(':animated')) return;
+
+                    if (e.originalEvent.deltaY > 0) {
+                        if (page == lastPage) return;
+
+                        page++;
+                    } else if (e.originalEvent.deltaY < 0) {
+                        if (page == 1) return;
+
+                        page--;
+                    }
+                    var posTop = (page - 1) * $(window).height();
+
+                    $html.animate({ scrollTop: posTop });
+                });
+
+
+                //header 다크모드 시작
+
+                $('.night').click(function(){
+                    $('#wrap').addClass('on')
+                    $('header').addClass('on')
+                    $('.cont_01').addClass('on')
+                })
+                $('.day').click(function(){
+                    $('#wrap').removeClass('on')
+                    $('header').removeClass('on')
+                    $('.cont_01').removeClass('on')
+                })
+
+                $('header .inner .utility ul li:nth-child(2)').click(function(e){
+                    e.preventDefault()
+                })
+
+
+                //2차메뉴 스크립트 시작
+                
+                $('header .inner nav ul li').mouseenter(function(){
+                    $('.gnb .depth_01').removeClass('on')
+                    $('.gnb .depth_01').eq($(this).index()).addClass('on')
+                    $('#wrap > .gnb').addClass('on')
+                })
+                $('.gnb .depth_01').mouseleave(function(){
+                    $('.gnb .depth_01').removeClass('on')
+                    $('#wrap > .gnb').removeClass('on')
+                })
+
+            });
+        </script>
+    </head>
+    <body>
+        <div id="wrap">
+            <header>
+                <div class="inner">
+                    <h1>
+                        <img src="img/logo_header.png" alt="헤더로고" />
+                        <img src="img/logo_header_night.png" alt="헤더로고" />
+                    </h1>
+                    <nav>
+                        <ul>
+                            <li><a href="#">소식ㆍ정보</a></li>
+                            <li><a href="#">참여ㆍ민원</a></li>
+                            <li><a href="#">주요업무</a></li>
+                            <li><a href="#">기관소개</a></li>
+                        </ul>
+                    </nav>
+                    <div class="utility">
+                        <ul>
+                            <li><a href="#">
+                                <img src="img/ico_search.png" alt="검색아이콘검은색">
+                                <img src="img/ico_search_night.png" alt="검색아이콘흰색">
+                            </a></li>
+                            <li><a href="#">
+                                <img class="night" src="img/ico_color_mode.png" alt="다크모드아이콘">
+                                <img class="day" src="img/ico_color_mode_night.png" alt="다크모드아이콘">
+                            </a></li>
+                            <li><a href="#">
+                                <img src="img/ico_language.png" alt="영어변환아이콘">
+                                <img src="img/ico_language_night.png" alt="영어변환아이콘">
+                            </a></li>
+                        </ul>
+                    </div>
+                    <!-- .utility end -->
+                </div>
+                <!-- .inner end -->
+            </header>
+            <div class="gnb">
+                <div class="depth_01 on">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>알림ㆍ소식</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>공지사항</span></a></li>
+                        <li><a href="#"><span>보도자료</span></a></li>
+                        <li><a href="#"><span>NIS NEWS</span></a></li>
+                        <li><a href="#"><span>입법예고</span></a></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>생활속정보</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>대테러용어</span></a></li>
+                        <li><a href="#"><span>여행금지국 방문자 교육</span></a></li>
+                        <li><a href="#"><span>정보보안 생활수칙</span></a></li>
+                        <li><a href="#"><span>국제범죄예방요령</span></a></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>동영상</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>院 홍보ㆍ111신고</span></a></li>
+                        <li><a href="#"><span>해외안전</span></a></li>
+                        <li><a href="#"><span>대테러ㆍ국제범죄</span></a></li>
+                        <li><a href="#"><span>산업보안</span></a></li>
+                        <li><a href="#"><span>사이버안보</span></a></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>발간자료</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>북한법령집</span></a></li>
+                        <li><a href="#"><span>방첩</span></a></li>
+                        <li><a href="#"><span>대테러</span></a></li>
+                        <li><a href="#"><span>국제범죄</span></a></li>
+                        <li><a href="#"><span>사이버안보</span></a></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>카드뉴스</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>포스터ㆍ만화</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>포스터</span></a></li>
+                        <li><a href="#"><span>만화</span></a></li>
+                    </ul>
+                </div><!-- .depth_01 end -->
+                <div class="depth_01">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>111신고</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>채용안내</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>추리퀴즈</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>안보저시관 견학</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>정보공개</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>정보공개청구</span></a></li>
+                        <li><a href="#"><span>청구처리조회</span></a></li>
+                        <li><a href="#"><span>정보목록</span></a></li>
+                        <li><a href="#"><span>비공개 대상 정보 기준</span></a></li>
+                        <li><a href="#"><span>불복구제 제도 및 절차</span></a></li>
+                        <li><a href="#"><span>법령ㆍ서식</span></a></li>
+                    </ul>
+                </div><!-- .depth_01 end -->
+                <div class="depth_01">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>방첩</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>소개</span></a></li>
+                        <li><a href="#"><span>방첩개념</span></a></li>
+                        <li><a href="#"><span>스파이 사건</span></a></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>대테러</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>소개</span></a></li>
+                        <li><a href="#"><span>국내테러경보</span></a></li>
+                        <li><a href="#"><span>국제테러정보</span></a></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>산업보안</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>소개</span></a></li>
+                        <li><a href="#"><span>기술유출현황</span></a></li>
+                        <li><a href="#"><span>국가핵심기술</span></a></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>방위산업보호</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>소개</span></a></li>
+                        <li><a href="#"><span>방위산업기술</span></a></li>
+                        <li><a href="#"><span>전략물자</span></a></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>해외정보</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>국제범죄</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>소개</span></a></li>
+                        <li><a href="#"><span>마약</span></a></li>
+                        <li><a href="#"><span>위폐</span></a></li>
+                        <li><a href="#"><span>밀수ㆍ밀입국</span></a></li>
+                        <li><a href="#"><span>금융범죄</span></a></li>
+                        <li><a href="#"><span>사이버범죄</span></a></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>사이버안보</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>소개</span></a></li>
+                        <li><a href="#"><span>사이버위기경보</span></a></li>
+                        <li><a href="#"><span>보안적합성 검증</span></a></li>
+                        <li><a href="#"><span>암호모듈 검증</span></a></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>대공수사</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>소개</span></a></li>
+                        <li><a href="#"><span>국가 대공수사 역량 강화</span></a></li>
+                        <li><a href="#"><span>주요 이적단체 판결사례</span></a></li>
+                        <li><a href="#"><span>주요수사결과</span></a></li>
+                        <li><a href="#"><span>북한의 대남 침투ㆍ도발 사건</span></a></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>대북정보</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>우주안보정보</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>국가보안</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>북한이탈주민보호</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                </div><!-- .depth_01 end -->
+                <div class="depth_01">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>국정원장 인사말</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>직무</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>원훈</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>직원헌장</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>해외정보</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>국정원역사</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>주요연혁</span></a></li>
+                        <li><a href="#"><span>역대원장</span></a></li>
+                        <li><a href="#"><span>역대원훈</span></a></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>GI소개</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>관련법령</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>국정원 소관법령</span></a></li>
+                        <li><a href="#"><span>타부처 소관법령</span></a></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>센터소개</span>
+                                <img src="img/ico_gnb_arrow.png" alt="오른쪽화살표">
+                                <img src="img/ico_gnb_arrow_hover.png" alt="오른쪽화살표">
+                            </a>
+                        </li>
+                        <li><a href="#"><span>국가사이버안보센터</span></a></li>
+                        <li><a href="#"><span>방첩정보공유센터</span></a></li>
+                        <li><a href="#"><span>산업기밀보호센터</span></a></li>
+                        <li><a href="#"><span>국제범죄정보센터</span></a></li>
+                        <li><a href="#"><span>러정보통합센터</span></a></li>
+                        <li><a href="#"><span>반확산센터</span></a></li>
+                        <li><a href="#"><span>국가우주안보센터</span></a></li>
+                    </ul>
+                </div><!-- .depth_01 end -->
+            </div><!-- .gnb end -->
+            <div class="right_menu">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <img src="img/ico_monitor.png" alt="채용사이트">
+                            <span>채용사이트</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="img/ico_info.png" alt="알림ㆍ소식">
+                            <span>알림ㆍ소식</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="img/ico_mobile_white.png" alt="`111신고">
+                            <span>111 신고</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="img/ico_facebook2.png" alt="페이스북">
+                            <span>페이스북</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="img/ico_cybersecurity.png" alt="국가사이버안보센터">
+                            <span>국가사이버<br/>안보센터</span>
+                        </a>
+                    </li>
+                </ul>
+            </div><!-- .right_menu end -->
+            <main>
+                <section class="cont_01">
+                    <video autoplay muted loop>
+                        <source src="img/main_visual.mp4" type="video/mp4">
+                    </video>
+                    <div class="search_box">
+                        <input type="text" placeholder="산업스파이">
+                        <img src="img/ico_search.png" alt="검색아이콘">
+                        <img src="img/ico_search_night.png" alt="검색아이콘">
+                    </div><!-- .search_box end -->
+                    <div class="popup">
+                        <a href="#">
+                            <img src="img/ico_popup.png" alt="팝업존로고">
+                            <span>팝업존</span>
+                        </a>
+                    </div><!-- .popup end -->
+                    <div class="scroll">
+                        <span>Scroll Down</span>
+                        <div class="down">
+                            <img src="img/ico_scroll_down.png" alt="아래스크롤">
+                            <img src="img/ico_scroll_down.png" alt="아래스크롤">
+                            <img src="img/ico_scroll_down.png" alt="아래스크롤">
+                        </div><!-- .down end -->
+                    </div><!-- .scroll end -->
+                    <div class="control">
+                        <span>MOVIE</span>
+                        <span class="play">PLAY</span><!-- .play end -->
+                        <span class="stop">STOP</span><!-- .stop end -->
+                    </div><!-- .control end -->
+                </section><!-- .cont_01 end -->
+                <section class="cont_02">
+                    <div class="inner">
+                        <div class="card_news">
+                            <h1>카드뉴스</h1>
+                            <a href="#">
+                                <img src="img/01.jpg" alt="카드뉴스이미지">
+                                <div class="text">
+                                    <h2>뉴스 기사를 봤을 뿐인데 해킹된다?</h2>
+                                    <p>#국가정보원 #국가사이버안보센터 #사이버보안 #해킹</p>
+                                </div><!-- .text end -->
+                            </a>
+                            <div class="more">
+                                <a href="#">
+                                    <span>카드뉴스 더 보기</span>
+                                    <img src="img/ico_chevron_right.png" alt="카드뉴스더보기아이콘">
+                                    <img src="img/ico_chevron_right_white.png" alt="카드뉴스더보기아이콘">
+                                </a>
+                            </div><!-- .more end -->
+                        </div><!-- .card_news end -->
+                        <div class="press_release">
+                            <h1>보도자료</h1>
+                            <a href="#">
+                                <img src="img/img_press_2.png" alt="보도자료이미지">
+                                <div class="text">
+                                    <h2>국정원, '중국 언론홍보업체 등의 국내 영향력 활동' 포착</h2>
+                                    <p>中 언론홍보업체 등, 국내 위장 언론사 사이트(38개) 개설ㆍ불법 기사 업로드...“국내 여론 조성 악용 가능성…배후세력 영향력 확대 前 신속 차단 계획”</p>
+                                </div><!-- .text end -->
+                            </a>
+                            <div class="more">
+                                <a href="#">
+                                    <span>보도자료 더 보기</span>
+                                    <img src="img/ico_chevron_right.png" alt="카드뉴스더보기아이콘">
+                                    <img src="img/ico_chevron_right_white.png" alt="카드뉴스더보기아이콘">
+                                </a>
+                            </div><!-- .more end -->
+                        </div><!-- .card_news end -->
+                    </div><!-- .inner end -->
+                </section><!-- cont_02 end -->
+                <section class="cont_03">
+                    <div class="inner">
+                        <p>국가와 국민을 향해<br/>국가정보원이 뛰고 있습니다.</p>
+                        <div class="arti">
+                            <a href="#" class="arti_box">
+                                <img src="img/img_about_1.jpg" alt="직무">
+                                <span>직무</span>
+                            </a><!-- .arti_box end -->
+                            <a href="#" class="arti_box">
+                                <img src="img/img_about_2.png" alt="국정원역사">
+                                <span>국정원 역사</span>
+                            </a><!-- .arti_box end -->
+                            <a href="#" class="arti_box">
+                                <img src="img/img_about_3.jpg" alt="관련법령">
+                                <span>관련 법령</span>
+                            </a><!-- .arti_box end -->
+                        </div><!-- .arti end -->
+                    </div><!-- .inner end -->
+                </section><!-- .cont_03 end -->
+                <section class="cont_04">   
+                    <div class="inner">
+                        <div class="up">
+                            <img src="img/img_career_3.png" alt="커리어사진">
+                            <img src="img/img_career_2.png" alt="커리어사진">
+                        </div><!-- .up end -->
+                        <p>주요임무ㆍ사명</p>
+                        <div class="down">
+                            <p>우리는 陰地에서 일하고<br/>陽地를 指向한다</p>
+                            <div class="info">
+                                <p>투철한 애국심과 사명감, 최고의 업무 전문성으로<br/>모든 안보위협에 선제적으로 대처하는 최고의 정보요원</p>
+                                <div class="btn">
+                                    <a href="#">
+                                        <span>인재상</span>
+                                        <img src="img/ico_chevron_right.png" alt="화살표">
+                                        <img src="img/ico_chevron_right_white.png" alt="화살표">
+                                    </a>
+                                    <a href="#">
+                                        <span>채용사이트 바로가기</span>
+                                        <img src="img/ico_chevron_right.png" alt="화살표">
+                                        <img src="img/ico_chevron_right_white.png" alt="화살표">
+                                    </a>
+                                </div><!-- .btn end -->
+                            </div><!-- .info end -->
+                        </div><!-- .down end -->
+                    </div><!-- .inner end -->
+                </section><!-- .cont_04 end -->
+                <section class="footer">
+                    <div class="inner">
+                        <div class="left">
+                            <div class="up">
+                                <img src="img/logo_footer_nis.png" alt="푸터로고">
+                                <img src="img/logo_footer_nis_white.png" alt="푸터로고">
+                                <ul class="footer_link">
+                                    <li><a href="#">저작권 정책</a></li>
+                                    <li><a href="#">개인정보 처리방침</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="#">Q&A</a></li>
+                                    <li><a href="#">사이트맵</a></li>
+                                </ul><!-- .footer_link end -->
+                            </div><!-- .up end -->
+                            <p>Copyright © National intelligence service, Republic of Korea</p>
+                        </div><!-- .left end -->
+                        <div class="right">
+                            <a href="#">
+                                <img src="img/WA_mark.png" alt="웹접근성검사마크">
+                            </a>
+                            <a href="#">
+                                <img src="img/ico_facebook.png" alt="페이스북마크">
+                                <img src="img/ico_facebook_white.png" alt="페이스북마크">
+                            </a>
+                        </div><!-- .right end -->
+                    </div><!-- .inner end -->
+                    <div class="top">
+                        <a href="#">
+                            <img src="img/ico_top.png" alt="위로버튼">
+                            <span>TOP</span>
+                        </a>
+                    </div><!-- .top end -->
+                </section><!-- .footer end -->
+            </main>
+        </div>
+        <!-- #wrap end -->
+    </body>
+</html>
